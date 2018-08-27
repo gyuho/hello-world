@@ -40,17 +40,17 @@ func main() {
 		ctx:     rootCtx,
 		handler: contextHandlerFunc(helloWorldHandler),
 	})
-	mux.Handle("/readiness", &contextAdapter{
+	mux.Handle("/hello-world-readiness", &contextAdapter{
 		lg:      lg,
 		ctx:     rootCtx,
 		handler: contextHandlerFunc(readinessHandler),
 	})
-	mux.Handle("/liveness", &contextAdapter{
+	mux.Handle("/hello-world-liveness", &contextAdapter{
 		lg:      lg,
 		ctx:     rootCtx,
 		handler: contextHandlerFunc(livenessHandler),
 	})
-	mux.Handle("/status", &contextAdapter{
+	mux.Handle("/hello-world-status", &contextAdapter{
 		lg:      lg,
 		ctx:     rootCtx,
 		handler: contextHandlerFunc(statusHandler),

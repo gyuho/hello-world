@@ -21,17 +21,17 @@ func TestHandler(t *testing.T) {
 		ctx:     context.Background(),
 		handler: contextHandlerFunc(helloWorldHandler),
 	})
-	mux.Handle("/readiness", &contextAdapter{
+	mux.Handle("/hello-world-readiness", &contextAdapter{
 		lg:      zap.NewExample(),
 		ctx:     context.Background(),
 		handler: contextHandlerFunc(readinessHandler),
 	})
-	mux.Handle("/liveness", &contextAdapter{
+	mux.Handle("/hello-world-liveness", &contextAdapter{
 		lg:      zap.NewExample(),
 		ctx:     context.Background(),
 		handler: contextHandlerFunc(livenessHandler),
 	})
-	mux.Handle("/status", &contextAdapter{
+	mux.Handle("/hello-world-status", &contextAdapter{
 		lg:      zap.NewExample(),
 		ctx:     context.Background(),
 		handler: contextHandlerFunc(statusHandler),
@@ -52,7 +52,7 @@ func TestHandler(t *testing.T) {
 		t.Fatalf("expected %q, got %q", "<b>Hello World!</b>", string(body))
 	}
 
-	rs, err = http.Get(ts.URL + "/readiness")
+	rs, err = http.Get(ts.URL + "/hello-world-readiness")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -60,7 +60,7 @@ func TestHandler(t *testing.T) {
 		t.Errorf("expected status code %v, got %v", http.StatusOK, rs.StatusCode)
 	}
 
-	rs, err = http.Post(ts.URL+"/readiness", "text/plain", nil)
+	rs, err = http.Post(ts.URL+"/hello-world-readiness", "text/plain", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -68,7 +68,7 @@ func TestHandler(t *testing.T) {
 		t.Errorf("expected status code %v, got %v", http.StatusMethodNotAllowed, rs.StatusCode)
 	}
 
-	rs, err = http.Get(ts.URL + "/readiness")
+	rs, err = http.Get(ts.URL + "/hello-world-readiness")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -76,7 +76,7 @@ func TestHandler(t *testing.T) {
 		t.Errorf("expected status code %v, got %v", http.StatusOK, rs.StatusCode)
 	}
 
-	rs, err = http.Get(ts.URL + "/liveness")
+	rs, err = http.Get(ts.URL + "/hello-world-liveness")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -101,7 +101,7 @@ func TestHandler(t *testing.T) {
 	}
 
 	version.GitCommit, version.ReleaseVersion, version.BuildTime = "a", "b", "c"
-	rs, err = http.Get(ts.URL + "/status")
+	rs, err = http.Get(ts.URL + "/hello-world-status")
 	if err != nil {
 		t.Fatal(err)
 	}
