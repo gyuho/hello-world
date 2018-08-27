@@ -15,7 +15,7 @@ fi
 
 CGO_ENABLED=0 GOOS=$(go env GOOS) GOARCH=$(go env GOARCH) go build -v \
   -ldflags "-s -w \
-  -X github.com/gyuho/a/hello-world/version.GitCommit=${GIT_COMMIT} \
-  -X github.com/gyuho/a/hello-world/version.ReleaseVersion=${RELEASE_VERSION} \
-  -X github.com/gyuho/a/hello-world/version.BuildTime=${BUILD_TIME}" \
+  -X github.com/gyuho/hello-world/version.GitCommit=${GIT_COMMIT} \
+  -X github.com/gyuho/hello-world/version.ReleaseVersion=${RELEASE_VERSION} \
+  -X github.com/gyuho/hello-world/version.BuildTime=${BUILD_TIME}" \
   -o ./hello-world

@@ -25,6 +25,6 @@ ENDPOINT: http://localhost:32001
 COMMENT
 ```
 
-Or open http://localhost:32001/hello and http://localhost:32001/status:
+Or open http://localhost:32001/hello and http://localhost:32001/hello-world-status:
 
 <img src="./img/hello-world.png" alt="hello-world.png" width="500" height="150"/>
